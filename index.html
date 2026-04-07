@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مولّد الدراسات الخمسة — جامعة أم القرى</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:#0d7a7a; --teal-dark:#085f5f; --teal-light:#1a9090;
+  --gold:#c9a227; --gold-light:#e8c050; --gold-dark:#a88020;
+  --white:#fff; --off-white:#f8f6f0;
+  --text-dark:#1a1a1a; --text-mid:#444; --text-light:#888;
+  --radius:16px;
+  --shadow:0 8px 32px rgba(13,122,122,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Tajawal','Cairo',sans-serif;background:#0a1a1a;color:#fff;min-height:100vh;overflow-x:hidden}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,var(--teal-dark) 0%,#0a4040 50%,#051a1a 100%);padding:0;position:relative;overflow:hidden}
+.site-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a227' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");opacity:.4}
+.header-inner{max-width:1100px;margin:0 auto;padding:24px 40px;display:flex;align-items:center;gap:20px;position:relative;z-index:1}
+.uqu-logo-img{height:64px;width:auto;filter:brightness(1)}
+.header-divider{width:1px;height:56px;background:rgba(201,162,39,.3)}
+.header-text h1{font-family:'Cairo',sans-serif;font-size:clamp(16px,2.2vw,24px);font-weight:900;color:#fff;line-height:1.3}
+.header-text h1 span{color:var(--gold-light)}
+.header-text p{font-size:12px;color:rgba(255,255,255,.55);margin-top:4px;font-weight:300}
+.header-badge{margin-right:auto;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);border-radius:20px;padding:5px 14px;font-size:11px;color:var(--gold-light);white-space:nowrap;font-weight:600}
+
+/* MAIN */
+.main-container{max-width:1100px;margin:0 auto;padding:36px 20px 80px}
+
+/* STEPS */
+.steps-bar{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:36px}
+.step-item{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:40px;font-size:13px;font-weight:600;transition:all .3s;color:rgba(255,255,255,.3)}
+.step-item.active{background:rgba(13,122,122,.25);border:1px solid rgba(13,122,122,.5);color:#5cd9d9}
+.step-item.done{color:rgba(201,162,39,.7)}
+.step-num{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.step-item.active .step-num{background:var(--teal);color:#fff}
+.step-item.done .step-num{background:var(--gold-dark);color:#fff}
+.step-arrow{color:rgba(255,255,255,.15);font-size:16px;padding:0 2px}
+
+/* FORM */
+#inputSection{animation:fadeUp .5s ease}
+.form-card{background:linear-gradient(145deg,rgba(13,122,122,.12),rgba(10,30,30,.8));border:1px solid rgba(13,122,122,.3);border-radius:var(--radius);padding:36px;backdrop-filter:blur(10px)}
+.form-card h2{font-family:'Cairo',sans-serif;font-size:18px;font-weight:700;color:var(--gold-light);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.form-card .subtitle{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:28px;font-weight:300}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-group{display:flex;flex-direction:column;gap:7px}
+.form-group.full{grid-column:1/-1}
+.form-group.third{grid-column:span 1}
+.form-group label{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px}
+.form-group label .req{color:var(--gold);font-size:10px}
+.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:11px 14px;color:#fff;font-family:'Tajawal',sans-serif;font-size:13px;transition:all .2s;outline:none;width:100%;direction:rtl}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--teal-light);background:rgba(13,122,122,.15);box-shadow:0 0 0 3px rgba(13,122,122,.12)}
+.form-group select option{background:#0a2020;color:#fff}
+.form-group textarea{resize:vertical;min-height:75px}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.22)}
+.cost-helper{font-size:11px;color:rgba(255,255,255,.3);margin-top:1px}
+.divider-label{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:6px 0 2px}
+.divider-label span{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.divider-label::before,.divider-label::after{content:'';flex:1;height:1px;background:rgba(201,162,39,.18)}
+.btn-generate{grid-column:1/-1;background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);color:#fff;border:none;border-radius:11px;padding:15px 28px;font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;position:relative;overflow:hidden}
+.btn-generate:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(13,122,122,.4)}
+.btn-generate:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* LOADING */
+#loadingSection{display:none;text-align:center;padding:80px 20px;animation:fadeUp .4s ease}
+.loading-ring{width:72px;height:72px;border:3px solid rgba(13,122,122,.2);border-top-color:var(--teal);border-right-color:var(--gold);border-radius:50%;animation:spin 1.2s linear infinite;margin:0 auto 20px}
+.loading-text{font-size:17px;font-weight:600;color:rgba(255,255,255,.8);margin-bottom:6px}
+.loading-sub{font-size:13px;color:rgba(255,255,255,.35);font-weight:300}
+.loading-progress{margin:20px auto 0;max-width:300px;height:3px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.loading-progress-bar{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:3px;animation:progressAnim 4s ease-in-out infinite}
+@keyframes progressAnim{0%{width:3%}60%{width:70%}90%{width:88%}100%{width:90%}}
+
+/* REPORT */
+#reportSection{display:none;animation:fadeUp .5s ease}
+.report-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.report-title-area h2{font-family:'Cairo',sans-serif;font-size:17px;font-weight:800;color:var(--gold-light)}
+.report-title-area p{font-size:12px;color:rgba(255,255,255,.35);margin-top:2px}
+.toolbar-actions{display:flex;gap:8px}
+.btn-action{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);border-radius:9px;padding:8px 16px;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:5px}
+.btn-action:hover{background:rgba(13,122,122,.25);border-color:rgba(13,122,122,.5);color:#fff}
+.btn-action.gold{background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.3);color:var(--gold-light)}
+.btn-action.gold:hover{background:rgba(201,162,39,.22);border-color:var(--gold)}
+
+/* NAV TABS */
+.slides-nav{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:20px}
+.slide-nav-btn{padding:5px 13px;border-radius:7px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.45);font-family:'Tajawal',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.slide-nav-btn:hover{border-color:rgba(13,122,122,.45);color:rgba(255,255,255,.75)}
+.slide-nav-btn.active{background:var(--teal);border-color:var(--teal-light);color:#fff}
+.slide-nav-btn.sec-nav.active{background:var(--gold-dark);border-color:var(--gold)}
+
+/* SLIDE */
+.slide{display:none;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:540px;animation:fadeUp .3s ease}
+.slide.active{display:block}
+
+/* COVER */
+.slide-cover{background:linear-gradient(145deg,var(--teal-dark) 0%,#063535 60%,#0a1a1a 100%);min-height:580px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:50px 40px;position:relative;overflow:hidden}
+.slide-cover::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a227' fill-opacity='0.05'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.cover-logos{display:flex;align-items:center;justify-content:center;gap:32px;margin-bottom:36px;position:relative}
+.cover-uqu-logo{height:72px;width:auto}
+.cover-logo-divider{width:1px;height:52px;background:rgba(201,162,39,.25)}
+.cover-dept-badge{background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);border-radius:10px;padding:10px 18px;text-align:center}
+.cover-dept-badge .dept-name{font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;color:#fff}
+.cover-dept-badge .dept-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px}
+.cover-tagline{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,162,39,.65);font-weight:300;margin-bottom:14px;position:relative}
+.cover-title{font-family:'Cairo',sans-serif;font-size:clamp(20px,3.5vw,32px);font-weight:900;color:#fff;line-height:1.45;margin-bottom:8px;position:relative}
+.cover-subtitle{font-size:clamp(13px,1.8vw,16px);color:rgba(255,255,255,.65);font-weight:300;margin-bottom:36px;position:relative}
+.cover-meta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative}
+.cover-meta-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 18px;text-align:center}
+.cover-meta-item .val{font-size:14px;font-weight:700;color:var(--gold-light)}
+.cover-meta-item .lbl{font-size:10px;color:rgba(255,255,255,.45);margin-top:2px;font-weight:300}
+.cover-bottom-bar{position:absolute;bottom:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal-light),var(--gold),var(--teal))}
+
+/* SECTION INTRO */
+.slide-section-intro{background:linear-gradient(145deg,var(--teal-dark),#063535);min-height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;position:relative}
+.slide-section-intro .sec-uqu-logo{height:48px;position:absolute;top:24px;left:32px;opacity:.7}
+.slide-section-intro .section-num{font-size:72px;font-weight:900;font-family:'Cairo',sans-serif;color:rgba(201,162,39,.12);line-height:1;margin-bottom:-8px}
+.slide-section-intro h2{font-family:'Cairo',sans-serif;font-size:clamp(26px,4.5vw,44px);font-weight:900;color:var(--gold-light)}
+.slide-section-intro .section-desc{font-size:13px;color:rgba(255,255,255,.45);margin-top:14px;text-align:center;max-width:420px;font-weight:300;line-height:1.8}
+.slide-section-intro .key-points{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.slide-section-intro .key-point{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 14px;font-size:12px;color:rgba(255,255,255,.65)}
+.bottom-pattern{position:absolute;bottom:0;left:0;right:0;height:7px;background:repeating-linear-gradient(90deg,var(--gold) 0,var(--gold) 7px,transparent 7px,transparent 14px);opacity:.45}
+
+/* CONTENT SLIDE */
+.slide-content{background:#fff;min-height:540px;display:flex;flex-direction:column}
+.slide-header{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.slide-header-right{display:flex;align-items:center;gap:14px}
+.slide-header-uqu{height:36px;width:auto;opacity:.9}
+.slide-header-divider{width:1px;height:28px;background:rgba(255,255,255,.2)}
+.slide-header h3{font-family:'Cairo',sans-serif;font-size:16px;font-weight:800;color:#fff}
+.slide-header-badge{background:rgba(201,162,39,.2);border:1px solid rgba(201,162,39,.4);border-radius:6px;padding:4px 11px;font-size:11px;font-weight:700;color:var(--gold-light);white-space:nowrap}
+.slide-body{padding:22px 28px;flex:1;color:var(--text-dark);direction:rtl;font-size:13px;line-height:1.75}
+.slide-body h4{font-family:'Cairo',sans-serif;font-size:13px;font-weight:800;color:var(--teal-dark);border-right:3px solid var(--gold);padding-right:9px;margin:18px 0 9px}
+.slide-body h4:first-child{margin-top:0}
+.slide-body p{font-size:13px;line-height:1.8;color:var(--text-mid);margin-bottom:9px}
+.slide-body ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.slide-body ul li{font-size:12.5px;line-height:1.7;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;padding:7px 12px;background:rgba(13,122,122,.04);border-radius:7px;border-right:2px solid rgba(13,122,122,.15)}
+.slide-body ul li::before{content:'◈';color:var(--teal);font-size:9px;flex-shrink:0;margin-top:4px}
+.slide-body .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
+.slide-body .info-card{background:linear-gradient(135deg,rgba(13,122,122,.06),rgba(201,162,39,.04));border:1px solid rgba(13,122,122,.12);border-radius:9px;padding:12px 14px}
+.slide-body .info-card .card-title{font-size:11px;font-weight:700;color:var(--teal-dark);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.slide-body .info-card p{font-size:12px;color:var(--text-mid);margin:0;line-height:1.65}
+.slide-body table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;border-radius:9px;overflow:hidden}
+.slide-body th{background:var(--teal);color:#fff;padding:9px 12px;text-align:right;font-weight:700;font-size:11.5px}
+.slide-body td{padding:8px 12px;border-bottom:1px solid rgba(0,0,0,.06);color:var(--text-dark);vertical-align:top;line-height:1.6}
+.slide-body tr:nth-child(even) td{background:rgba(13,122,122,.04)}
+.slide-body tr:last-child td{border-bottom:none}
+.slide-body .highlight-box{background:linear-gradient(135deg,rgba(13,122,122,.07),rgba(201,162,39,.04));border:1px solid rgba(13,122,122,.14);border-radius:9px;padding:13px 15px;margin:10px 0;font-size:12.5px;line-height:1.8;color:var(--text-dark)}
+.slide-body .highlight-box.gold{background:linear-gradient(135deg,rgba(201,162,39,.08),rgba(13,122,122,.04));border-color:rgba(201,162,39,.2)}
+.slide-body .risk-badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:700}
+.slide-body .risk-high{background:rgba(220,50,50,.1);color:#c03030;border:1px solid rgba(220,50,50,.2)}
+.slide-body .risk-med{background:rgba(220,140,30,.1);color:#b07000;border:1px solid rgba(220,140,30,.2)}
+.slide-body .risk-low{background:rgba(30,160,80,.1);color:#1a7040;border:1px solid rgba(30,160,80,.2)}
+.slide-body .recommend-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(30,160,80,.1);color:#1a7040;border:1px solid rgba(30,160,80,.25);border-radius:6px;padding:3px 9px;font-size:11px;font-weight:700}
+.slide-body .timeline-row{display:flex;gap:0;margin-bottom:8px;align-items:stretch}
+.slide-body .timeline-marker{display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0}
+.slide-body .timeline-dot{width:14px;height:14px;border-radius:50%;background:var(--teal);border:2px solid var(--gold);flex-shrink:0}
+.slide-body .timeline-line{width:2px;flex:1;background:rgba(13,122,122,.2);margin:2px 0}
+.slide-body .timeline-content{background:rgba(13,122,122,.04);border:1px solid rgba(13,122,122,.1);border-radius:8px;padding:9px 12px;flex:1;margin-bottom:4px}
+.slide-body .timeline-content .phase-title{font-size:12px;font-weight:700;color:var(--teal-dark)}
+.slide-body .timeline-content .phase-meta{font-size:11px;color:var(--text-light);margin-top:3px}
+.slide-body .timeline-content .phase-del{font-size:11.5px;color:var(--text-mid);margin-top:4px}
+.slide-body .ve-score{display:flex;align-items:center;gap:8px}
+.slide-body .ve-score .score-val{font-family:'Cairo',sans-serif;font-size:22px;font-weight:900;color:var(--teal-dark)}
+.slide-body .ve-score .score-label{font-size:11px;color:var(--text-light)}
+.slide-footer{background:rgba(13,122,122,.04);border-top:1px solid rgba(13,122,122,.09);padding:7px 28px;display:flex;align-items:center;justify-content:space-between}
+.slide-footer .footer-uqu{font-size:10.5px;color:var(--text-light);font-weight:600}
+.slide-footer .footer-num{font-size:10.5px;color:var(--text-light)}
+.slide-footer-bar{height:4px;background:linear-gradient(90deg,var(--teal),var(--gold))}
+
+/* SLIDE CONTROLS */
+.slide-controls{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.btn-nav{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);border-radius:9px;padding:9px 18px;font-family:'Tajawal',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:5px}
+.btn-nav:hover{background:rgba(13,122,122,.2);border-color:rgba(13,122,122,.4);color:#fff}
+.btn-nav:disabled{opacity:.25;cursor:default}
+.slide-counter{font-size:12px;color:rgba(255,255,255,.35);font-weight:500}
+
+/* PRINT */
+@media print{
+  body{background:#fff;color:#000}
+  .site-header,.steps-bar,.report-toolbar,.slides-nav,.slide-controls,#inputSection,#loadingSection,.btn-action,.btn-nav{display:none!important}
+  #reportSection{display:block!important}
+  .slide{display:block!important;page-break-after:always;break-after:page;border-radius:0;box-shadow:none}
+  .slide-cover,.slide-section-intro{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:1}
+  .header-inner{padding:16px}
+  .form-card{padding:20px}
+  .slide-body{padding:16px}
+  .cover-meta{gap:10px}
+  .slide-body .two-col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <img src="data:image/png;base64,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" class="uqu-logo-img" alt="جامعة أم القرى">
+    <div class="header-divider"></div>
+    <div class="header-text">
+      <h1>مولّد <span>الدراسات الخمسة</span> — Five Case Model</h1>
+      <p>وكالة الجامعة للمشاريع · الإدارة العامة للمشاريع · قسم الدراسات والتصاميم</p>
+    </div>
+    <div class="header-badge">إصدار 1447هـ</div>
+  </div>
+</header>
+
+<div class="main-container">
+
+  <div class="steps-bar" id="stepsBar">
+    <div class="step-item active" id="step1"><div class="step-num">١</div><span>إدخال بيانات المشروع</span></div>
+    <div class="step-arrow">←</div>
+    <div class="step-item" id="step2"><div class="step-num">٢</div><span>توليد التقرير</span></div>
+    <div class="step-arrow">←</div>
+    <div class="step-item" id="step3"><div class="step-num">٣</div><span>عرض وطباعة</span></div>
+  </div>
+
+  <!-- INPUT -->
+  <div id="inputSection">
+    <div class="form-card">
+      <h2>📋 بيانات المشروع الأساسية</h2>
+      <p class="subtitle">أدخل بيانات المشروع وسيولّد النظام التقرير الكامل وفق نموذج الدراسات الخمسة المعتمد لجامعة أم القرى</p>
+      <div class="form-grid">
+        <div class="divider-label"><span>معلومات المشروع</span></div>
+        <div class="form-group full">
+          <label>اسم المشروع <span class="req">● مطلوب</span></label>
+          <input type="text" id="projectName" placeholder="مثال: إنشاء البوابات الرئيسية والسور الخارجي لمقر الطالبات">
+        </div>
+        <div class="form-group">
+          <label>الموقع / المبنى <span class="req">● مطلوب</span></label>
+          <input type="text" id="projectLocation" placeholder="مثال: شطر الطالبات — العابدية">
+        </div>
+        <div class="form-group">
+          <label>نوع المشروع</label>
+          <select id="projectType">
+            <option value="إنشائي">مشروع إنشائي</option>
+            <option value="بنية تحتية">بنية تحتية</option>
+            <option value="تطوير">تطوير وتحديث</option>
+            <option value="صيانة">صيانة وترميم</option>
+            <option value="تقنية">تقنية ومعلومات</option>
+            <option value="تجهيزات">تجهيزات وأثاث</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+        </div>
+        <div class="divider-label"><span>التكلفة والزمن</span></div>
+        <div class="form-group">
+          <label>قيمة عقد التنفيذ (ريال) <span class="req">● مطلوب</span></label>
+          <input type="text" id="costConstruction" placeholder="مثال: 31,048,234">
+          <span class="cost-helper">تكاليف الأعمال الإنشائية فقط</span>
+        </div>
+        <div class="form-group">
+          <label>قيمة عقد الإشراف (ريال)</label>
+          <input type="text" id="costSupervision" placeholder="يُحسب تلقائياً (~10%) أو أدخل يدوياً">
+          <span class="cost-helper">اتركه فارغاً للحساب التلقائي</span>
+        </div>
+        <div class="form-group">
+          <label>مدة التنفيذ (شهر) <span class="req">● مطلوب</span></label>
+          <input type="number" id="duration" placeholder="مثال: 30" min="1" max="120">
+        </div>
+        <div class="form-group">
+          <label>السنة المالية</label>
+          <input type="text" id="fiscalYear" placeholder="مثال: 1446-1447 هـ">
+        </div>
+        <div class="divider-label"><span>وصف ومبررات المشروع</span></div>
+        <div class="form-group full">
+          <label>وصف موجز للمشروع وأهدافه <span class="req">● مطلوب</span></label>
+          <textarea id="projectDesc" rows="3" placeholder="اشرح ماذا يتضمن المشروع وما الهدف منه..."></textarea>
+        </div>
+        <div class="form-group full">
+          <label>مبررات الحاجة للمشروع</label>
+          <textarea id="projectJustification" rows="2" placeholder="المشكلة أو الحاجة التي يعالجها المشروع — التداعيات عند عدم التنفيذ..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>جهة الإشراف</label>
+          <input type="text" id="supervisor" placeholder="وكالة الجامعة للمشاريع">
+        </div>
+        <div class="form-group">
+          <label>المستفيد الرئيسي</label>
+          <input type="text" id="beneficiary" placeholder="مثال: طالبات الجامعة">
+        </div>
+        <div class="divider-label"><span>تفاصيل إضافية تعزز دقة التقرير</span></div>
+        <div class="form-group full">
+          <label>وصف الموقع والبيئة المحيطة</label>
+          <textarea id="siteDesc" rows="2" placeholder="طبيعة الموقع، الطرق المحيطة، المشاريع المرتبطة..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>عدد الطلاب / المستفيدين المتوقعين</label>
+          <input type="text" id="usersCount" placeholder="مثال: 15,000 طالبة">
+        </div>
+        <div class="form-group">
+          <label>مواد التنفيذ الرئيسية</label>
+          <input type="text" id="materials" placeholder="مثال: بريكاست — خرسانة — أسفلت">
+        </div>
+        <button class="btn-generate" onclick="generateReport()">
+          <span>✦</span><span>توليد تقرير الدراسات الخمسة الكامل</span><span>←</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="loadingSection">
+    <div class="loading-ring"></div>
+    <div class="loading-text" id="loadingText">جاري تحليل بيانات المشروع...</div>
+    <div class="loading-sub" id="loadingSub">يستغرق التوليد 45-90 ثانية</div>
+    <div class="loading-progress"><div class="loading-progress-bar"></div></div>
+  </div>
+
+  <!-- REPORT -->
+  <div id="reportSection">
+    <div class="report-toolbar">
+      <div class="report-title-area">
+        <h2 id="reportTitleDisplay">تقرير الدراسات الخمسة</h2>
+        <p id="reportMetaDisplay">جامعة أم القرى · إدارة المشاريع</p>
+      </div>
+      <div class="toolbar-actions">
+        <button class="btn-action" onclick="backToForm()">← تعديل البيانات</button>
+        <button class="btn-action gold" onclick="window.print()">🖨 طباعة PDF</button>
+      </div>
+    </div>
+    <div class="slides-nav" id="slidesNav"></div>
+    <div id="slidesContainer"></div>
+    <div class="slide-controls">
+      <button class="btn-nav" id="btnPrev" onclick="prevSlide()">→ السابق</button>
+      <span class="slide-counter" id="slideCounter">الشريحة 1 من 1</span>
+      <button class="btn-nav" id="btnNext" onclick="nextSlide()">التالي ←</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const UQU_LOGO = "data:image/png;base64,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";
+let currentSlide=0, allSlides=[];
+
+function formatNumber(n){if(!n)return'0';return Number(String(n).replace(/,/g,'')).toLocaleString('ar-SA')}
+function parseNum(s){return parseFloat(String(s).replace(/,/g,''))||0}
+function setStep(n){[1,2,3].forEach(i=>{const el=document.getElementById('step'+i);el.className='step-item'+(i<n?' done':i===n?' active':'')})}
+
+async function callAPI(prompt, maxTokens){
+  const response = await fetch('/api/generate',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:maxTokens,messages:[{role:'user',content:prompt}]})
+  });
+  const data = await response.json();
+  if(data.error) throw new Error(data.error);
+  const rawText = data.content.map(b=>b.text||'').join('');
+  try {
+    const cleaned = rawText.replace(/```json[\s\S]*?```/g, m => m.slice(7,-3)).replace(/```/g,'').trim();
+    const jsonMatch = cleaned.match(/^\s*(\{[\s\S]*\})\s*$/);
+    if(jsonMatch) return JSON.parse(jsonMatch[1]);
+    return JSON.parse(cleaned);
+  } catch(e) {
+    const m = rawText.match(/\{[\s\S]*\}/);
+    if(m){ try{ return JSON.parse(m[0]); }catch(e2){} }
+    throw new Error('JSON parse error: ' + rawText.substring(0,300));
+  }
+}
+
+async function generateReport(){
+  const name=document.getElementById('projectName').value.trim();
+  const location=document.getElementById('projectLocation').value.trim();
+  const costConstr=document.getElementById('costConstruction').value.trim();
+  const duration=document.getElementById('duration').value.trim();
+  const desc=document.getElementById('projectDesc').value.trim();
+  if(!name||!costConstr||!duration||!desc){alert('يرجى ملء الحقول المطلوبة: اسم المشروع، التكلفة، المدة، الوصف');return}
+
+  const costConstrNum=parseNum(costConstr);
+  let costSupervNum=parseNum(document.getElementById('costSupervision').value);
+  if(!costSupervNum) costSupervNum=Math.round(costConstrNum*0.10);
+  const totalCost=costConstrNum+costSupervNum;
+  const opex=Math.round(totalCost*0.00025*30);
+  const grandTotal=totalCost+opex;
+  const fiscalYear=document.getElementById('fiscalYear').value||'1446-1447 هـ';
+  const supervisor=document.getElementById('supervisor').value||'وكالة الجامعة للمشاريع';
+  const beneficiary=document.getElementById('beneficiary').value||'منسوبو الجامعة';
+  const justification=document.getElementById('projectJustification').value||'';
+  const type=document.getElementById('projectType').value||'إنشائي';
+  const siteDesc=document.getElementById('siteDesc').value||'';
+  const usersCount=document.getElementById('usersCount').value||'';
+  const materials=document.getElementById('materials').value||'';
+
+  document.getElementById('inputSection').style.display='none';
+  document.getElementById('loadingSection').style.display='block';
+  setStep(2);
+
+  const info=`اسم المشروع: ${name} | الموقع: ${location||'جامعة أم القرى'} | النوع: ${type} | الوصف: ${desc} | المبررات: ${justification||'غير محدد'} | المستفيدون: ${usersCount||'منسوبو الجامعة'} | المواد: ${materials||'بريكاست وخرسانة'} | تكلفة التنفيذ: ${formatNumber(costConstrNum)} ريال | تكلفة الإشراف: ${formatNumber(costSupervNum)} ريال | الإجمالي: ${formatNumber(totalCost)} ريال | مدة التنفيذ: ${duration} شهر | السنة المالية: ${fiscalYear} | جهة الإشراف: ${supervisor} | المستفيد: ${beneficiary}`;
+
+  const msgEl=document.getElementById('loadingText');
+  const subEl=document.getElementById('loadingSub');
+  msgEl.textContent='جاري توليد الدراسات الاستراتيجية والاقتصادية والتجارية...';
+  subEl.textContent='الطلب الأول — ينتهي خلال 30 ثانية';
+
+  const durN = parseInt(duration);
+
+  const p1=`أنت خبير استشاري لدراسات الجدوى في الجامعات الحكومية السعودية وفق نموذج الدراسات الخمسة.
+بيانات: ${info}
+أرجع JSON صحيح فقط بدون أي نص إضافي قبله أو بعده:
+{"strategic":{"vision2030_detail":"5 جمل ربط المشروع برؤية 2030","national_programs":["برنامج1","برنامج2","برنامج3"],"strategic_objectives":[{"obj":"هدف1","detail":"تفصيل"},{"obj":"هدف2","detail":"تفصيل"},{"obj":"هدف3","detail":"تفصيل"},{"obj":"هدف4","detail":"تفصيل"},{"obj":"هدف5","detail":"تفصيل"}],"problems":[{"problem":"مشكلة1","impact":"أثر1"},{"problem":"مشكلة2","impact":"أثر2"},{"problem":"مشكلة3","impact":"أثر3"}],"sector_alignment":"3 جمل مواءمة قطاعية","related_projects":"جملتان ارتباط بمشاريع الجامعة"},"economic":{"current_situation":"3 جمل عن الوضع الراهن","capacity_demand":"4 جمل تحليل الطلب","urgency":"جملتان ضرورة التنفيذ الآن","negative_impacts":[{"impact":"تبعة1","severity":"جسيم"},{"impact":"تبعة2","severity":"متوسط"},{"impact":"تبعة3","severity":"جسيم"},{"impact":"تبعة4","severity":"متوسط"}],"alternatives":[{"name":"الوضع الراهن","desc":"الاستمرار دون تدخل","pros":"لا تكلفة فورية","cons":"استمرار المشاكل","recommended":false,"score":2},{"name":"تنفيذ جزئي","desc":"تنفيذ جزء من الأعمال","pros":"تكلفة أقل","cons":"لا يحقق الأهداف كاملة","recommended":false,"score":6},{"name":"المشروع المقترح","desc":"التنفيذ الكامل","pros":"يحقق جميع الأهداف","cons":"تكلفة أعلى من الجزئي","recommended":true,"score":10}],"economic_benefits":[{"type":"أمني","benefit":"فائدة أمنية مفصلة"},{"type":"اجتماعي","benefit":"فائدة اجتماعية مفصلة"},{"type":"عمراني","benefit":"فائدة عمرانية مفصلة"},{"type":"تشغيلي","benefit":"فائدة تشغيلية مفصلة"}]},"commercial":{"contract_strategy":"4 جمل استراتيجية التعاقد","contract_type":"المنافسة العامة وفق نظام المنافسات الحكومية","private_sector":"جملتان عن القطاع الخاص","procurement_docs":["وثيقة1","وثيقة2","وثيقة3","وثيقة4","وثيقة5"],"evaluation_criteria":[{"criterion":"الكفاءة الفنية","weight":"40%"},{"criterion":"السعر التنافسي","weight":"30%"},{"criterion":"الخبرة السابقة","weight":"20%"},{"criterion":"الضمانات المالية","weight":"10%"}],"payment_schedule":"وصف جدول الدفعات"}}`;
+
+  const p2=`أنت خبير استشاري لدراسات الجدوى في الجامعات الحكومية السعودية.
+بيانات: ${info}
+أرجع JSON صحيح فقط بدون أي نص إضافي:
+{"financial":{"budget_items":[{"item":"الأعمال الاستشارية والتصاميم","amount":${costSupervNum},"pct":"9%","detail":"تصاميم تنفيذية وإشراف ميداني"},{"item":"أعمال الحفر والردم","amount":${Math.round(costConstrNum*0.11)},"pct":"11%","detail":"حفر الأساسات وردم التربة"},{"item":"الأعمال الخرسانية","amount":${Math.round(costConstrNum*0.20)},"pct":"20%","detail":"أساسات وأعمدة وجسور"},{"item":"البريكاست والأسوار","amount":${Math.round(costConstrNum*0.25)},"pct":"25%","detail":"لوحات بريكاست وواجهات"},{"item":"البوابات وأنظمة التحكم","amount":${Math.round(costConstrNum*0.12)},"pct":"12%","detail":"بوابات رئيسية وجانبية"},{"item":"العزل والحمايات","amount":${Math.round(costConstrNum*0.07)},"pct":"7%","detail":"عزل رطوبة وحماية تآكل"},{"item":"الأسفلت والأرصفة والإضاءة","amount":${Math.round(costConstrNum*0.09)},"pct":"9%","detail":"طرق داخلية وإضاءة"},{"item":"الاحتياطي والطوارئ","amount":${Math.round(costConstrNum*0.08)},"pct":"8%","detail":"تغييرات وظروف غير متوقعة"}],"opex_annual":${Math.round(costConstrNum*0.0025)},"opex_lifecycle":${opex},"grand_total":${grandTotal},"value_engineering":[{"idea":"استخدام المواد المحلية بديلاً عن المستوردة مع الحفاظ على المواصفات الفنية","saving_pct":"5%","impact_quality":"لا تأثير على الجودة","score":9},{"idea":"تحسين التصاميم التخطيطية لتقليل كميات الخرسانة دون التأثير على المتانة","saving_pct":"4%","impact_quality":"تحسين الأداء الإنشائي","score":10},{"idea":"استخدام الإضاءة LED الموفرة للطاقة لتقليل تكاليف التشغيل مدى الحياة","saving_pct":"3%","impact_quality":"تقليل تكلفة الصيانة","score":9},{"idea":"دمج بعض بنود الأعمال في عقد واحد لتقليل التكاليف الإدارية","saving_pct":"3%","impact_quality":"تسريع التنفيذ","score":8}],"total_saving_pct":"15-22%","total_saving_amount":${Math.round(totalCost*0.18)}},"management":{"project_phases":[{"phase":"المرحلة الأولى","name":"الدراسات واعتماد التمويل","duration_months":3,"start_month":1,"deliverables":["إعداد الدراسات والتصاميم","اعتماد الميزانية","وثائق المنافسة"]},{"phase":"المرحلة الثانية","name":"الطرح والترسية","duration_months":6,"start_month":4,"deliverables":["طرح المنافسة العامة","تقييم العروض وترسية العقد"]},{"phase":"المرحلة الثالثة","name":"تنفيذ الأعمال","duration_months":${durN},"start_month":10,"deliverables":["تسليم الموقع","تنفيذ الأعمال","الاستلام الابتدائي"]},{"phase":"المرحلة الرابعة","name":"فترة الضمان","duration_months":12,"start_month":${10+durN},"deliverables":["متابعة العيوب","الاستلام النهائي"]},{"phase":"المرحلة الخامسة","name":"التشغيل والصيانة","duration_months":360,"start_month":${22+durN},"deliverables":["التشغيل الكامل","الصيانة الدورية"]}],"risks":[{"category":"مالية","risk":"تأخر توفير الاعتمادات المالية للمشروع مما قد يؤثر على الجدول الزمني","probability":"متوسط","impact":"عالٍ","mitigation":"تجهيز خطة التدفقات النقدية مسبقاً والتنسيق المبكر مع الإدارة المالية","owner":"إدارة المشاريع"},{"category":"مالية","risk":"ارتفاع أسعار مواد البناء خلال فترة التنفيذ","probability":"منخفض","impact":"عالٍ","mitigation":"تضمين بند تعديل الأسعار في العقد واستخدام الاحتياطي","owner":"الإدارة المالية"},{"category":"تقنية","risk":"اكتشاف عوائق في التربة أو خدمات مدفونة غير مرصودة","probability":"متوسط","impact":"متوسط","mitigation":"إجراء جسات استكشافية شاملة قبل التنفيذ وتعيين مهندس جيوتقني","owner":"الاستشاري المشرف"},{"category":"تقنية","risk":"عدم مطابقة التنفيذ للمواصفات الفنية المعتمدة","probability":"منخفض","impact":"عالٍ","mitigation":"تطبيق نظام ضبط الجودة ومراجعة المواد قبل التوريد","owner":"الاستشاري المشرف"},{"category":"تشغيلية","risk":"تأخر المقاول في التنفيذ وعدم الالتزام بالجدول الزمني","probability":"متوسط","impact":"عالٍ","mitigation":"تفعيل بند الغرامات وإعداد برنامج زمني تفصيلي أسبوعي","owner":"مدير المشروع"},{"category":"خارجية","risk":"تأثير أعمال البناء على حركة المرور والمناطق المجاورة","probability":"متوسط","impact":"متوسط","mitigation":"التنسيق المسبق مع الجهات الحكومية ووضع خطة إدارة المرور","owner":"إدارة المشاريع"}],"project_team":{"owner":"الإدارة العامة للمشاريع — وكالة الجامعة للمشاريع — جامعة أم القرى","supervisor_role":"مكتب استشارات هندسية معتمد يتولى الإشراف الميداني وضبط الجودة","contractor_role":"المقاول الرئيسي المرسى عليه عبر المنافسة العامة وفق نظام المشتريات","subcontractors":"مقاولو الباطن المعتمدون من المقاول الرئيسي بموافقة جهاز الإشراف"},"kpis":[{"kpi":"نسبة الالتزام بالجدول الزمني","target":"≥ 90%"},{"kpi":"نسبة بنود الجودة المستوفاة","target":"100%"},{"kpi":"نسبة الالتزام بالميزانية","target":"≤ 105%"},{"kpi":"معدل حوادث السلامة المهنية","target":"صفر حوادث جسيمة"}]}}`;
+
+  try {
+    const [part1, part2] = await Promise.all([ callAPI(p1,3500), callAPI(p2,3500) ]);
+    const reportData = {...part1, ...part2};
+    const proj={name,location,type,duration,fiscalYear,supervisor,beneficiary,
+      costConstr:costConstrNum,costSuperv:costSupervNum,totalCost,opex,grandTotal,
+      desc,justification,usersCount,materials,siteDesc};
+    renderReport(proj, reportData);
+  } catch(err){
+    console.error(err);
+    alert('حدث خطأ أثناء التوليد:\n'+err.message+'\n\nيرجى المحاولة مرة أخرى');
+    document.getElementById('loadingSection').style.display='none';
+    document.getElementById('inputSection').style.display='block';
+    setStep(1);
+  }
+}
+
+function renderReport(proj,data){
+  document.getElementById('loadingSection').style.display='none';
+  document.getElementById('reportSection').style.display='block';
+  setStep(3);
+  document.getElementById('reportTitleDisplay').textContent='تقرير الدراسات الخمسة: '+proj.name;
+  document.getElementById('reportMetaDisplay').textContent=`جامعة أم القرى · ${proj.location||''} · ${proj.fiscalYear}`;
+
+  const s=data.strategic, e=data.economic, c=data.commercial, f=data.financial, m=data.management;
+
+  const slides=[
+
+  // 0 COVER
+  {id:'cover',label:'الغلاف',type:'cover',html:`
+  <div class="slide-cover">
+    <div class="cover-logos">
+      ${logoImg('cover-uqu-logo',76)}
+      <div class="cover-logo-divider"></div>
+      <div class="cover-dept-badge">
+        <div class="dept-name">وكالة الجامعة للمشاريع</div>
+        <div class="dept-sub">الإدارة العامة للمشاريع · قسم الدراسات</div>
+      </div>
+    </div>
+    <div class="cover-tagline">تقرير الدراسات الخمسة — Five Case Model</div>
+    <div class="cover-title">${proj.name}</div>
+    <div class="cover-subtitle">جامعة أم القرى · مكة المكرمة · ${proj.fiscalYear}</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><div class="val">${formatNumber(proj.totalCost)}</div><div class="lbl">التكلفة الرأسمالية (ريال)</div></div>
+      <div class="cover-meta-item"><div class="val">${proj.duration} شهر</div><div class="lbl">مدة التنفيذ</div></div>
+      <div class="cover-meta-item"><div class="val">${formatNumber(proj.grandTotal)}</div><div class="lbl">التكلفة الكلية للعمر (ريال)</div></div>
+      <div class="cover-meta-item"><div class="val">${proj.type}</div><div class="lbl">نوع المشروع</div></div>
+    </div>
+    <div class="cover-bottom-bar"></div>
+  </div>`},
+
+  // 1 STRATEGIC INTRO
+  {id:'s1-intro',label:'الاستراتيجية',type:'section',html:`
+  <div class="slide-section-intro">
+    ${logoImg('sec-uqu-logo',44)}
+    <div class="section-num">١</div>
+    <h2>الدراسة الاستراتيجية</h2>
+    <div class="section-desc">المواءمة مع رؤية 2030 والبرامج الوطنية · الأهداف الاستراتيجية · المشاكل المعالجة · الخطط القطاعية</div>
+    <div class="key-points">
+      ${(s.national_programs||[]).map(p=>`<div class="key-point">◈ ${p}</div>`).join('')}
+    </div>
+    <div class="bottom-pattern"></div>
+  </div>`},
+
+  // 2 VISION & OBJECTIVES
+  {id:'s1-vision',label:'رؤية 2030',type:'content',html:cSlide('الدراسة الاستراتيجية','المواءمة مع رؤية 2030 والأهداف الاستراتيجية',`
+    <h4>المواءمة مع مستهدفات رؤية 2030 والبرامج الوطنية</h4>
+    <div class="highlight-box">${s.vision2030_detail||''}</div>
+    <h4>الأهداف الاستراتيجية للمشروع</h4>
+    <table>
+      <tr><th>الهدف</th><th>التفصيل</th></tr>
+      ${(s.strategic_objectives||[]).map(o=>`<tr><td><strong>${o.obj}</strong></td><td>${o.detail}</td></tr>`).join('')}
+    </table>`,'الدراسة الاستراتيجية (1/3)')},
+
+  // 3 PROBLEMS & ALIGNMENT
+  {id:'s1-problems',label:'المشاكل والمواءمة',type:'content',html:cSlide('الدراسة الاستراتيجية','المشاكل المعالجة والمواءمة القطاعية',`
+    <h4>المشاكل والتحديات التي يعالجها المشروع</h4>
+    <table>
+      <tr><th>المشكلة / التحدي</th><th>الأثر الحالي</th></tr>
+      ${(s.problems||[]).map(p=>`<tr><td><strong>${p.problem}</strong></td><td>${p.impact}</td></tr>`).join('')}
+    </table>
+    <h4>المواءمة مع الخطط القطاعية</h4>
+    <div class="highlight-box">${s.sector_alignment||''}</div>
+    <h4>الارتباط بمشاريع الجامعة الأخرى</h4>
+    <p>${s.related_projects||''}</p>`,'الدراسة الاستراتيجية (2/3)')},
+
+  // 4 OBJECTIVES DETAIL
+  {id:'s1-obj',label:'الأهداف التفصيلية',type:'content',html:cSlide('الدراسة الاستراتيجية','وصف المشروع وأهدافه التفصيلية',`
+    <h4>وصف المشروع</h4>
+    <div class="highlight-box">${proj.desc}</div>
+    ${proj.justification?`<h4>مبررات المشروع</h4><div class="highlight-box gold">${proj.justification}</div>`:''}
+    <div class="two-col">
+      <div class="info-card"><div class="card-title">الموقع</div><p>${proj.location||'جامعة أم القرى'}</p></div>
+      <div class="info-card"><div class="card-title">المستفيد الرئيسي</div><p>${proj.beneficiary}</p></div>
+      <div class="info-card"><div class="card-title">جهة الإشراف</div><p>${proj.supervisor}</p></div>
+      <div class="info-card"><div class="card-title">نوع المشروع</div><p>${proj.type}</p></div>
+    </div>`,'الدراسة الاستراتيجية (3/3)')},
+
+  // 5 ECONOMIC INTRO
+  {id:'s2-intro',label:'الاقتصادية',type:'section',html:`
+  <div class="slide-section-intro">
+    ${logoImg('sec-uqu-logo',44)}
+    <div class="section-num">٢</div>
+    <h2>الدراسة الاقتصادية</h2>
+    <div class="section-desc">الوضع الراهن · السعة والطلب · التبعات عند عدم التنفيذ · تحليل البدائل · العوائد</div>
+    <div class="key-points">
+      <div class="key-point">◈ تحليل السعة والطلب</div>
+      <div class="key-point">◈ دراسة البدائل</div>
+      <div class="key-point">◈ العوائد الاقتصادية والاجتماعية</div>
+    </div>
+    <div class="bottom-pattern"></div>
+  </div>`},
+
+  // 6 CURRENT SITUATION & URGENCY
+  {id:'s2-situation',label:'الوضع الراهن',type:'content',html:cSlide('الدراسة الاقتصادية','الوضع الراهن والحاجة الآنية للمشروع',`
+    <h4>الوضع الراهن</h4>
+    <div class="highlight-box">${e.current_situation||''}</div>
+    <h4>تحليل السعة والطلب</h4>
+    <div class="highlight-box">${e.capacity_demand||''}</div>
+    <h4>الحاجة العاجلة للتنفيذ في العام المالي الحالي</h4>
+    <div class="highlight-box gold">${e.urgency||''}</div>`,'الدراسة الاقتصادية (1/3)')},
+
+  // 7 NEGATIVE IMPACTS
+  {id:'s2-impacts',label:'التبعات والمخاطر',type:'content',html:cSlide('الدراسة الاقتصادية','التبعات السلبية في حال عدم التنفيذ',`
+    <h4>التبعات والآثار السلبية المحتملة</h4>
+    <table>
+      <tr><th>التبعة / الأثر</th><th>درجة الخطورة</th></tr>
+      ${(e.negative_impacts||[]).map(i=>`<tr>
+        <td>${i.impact}</td>
+        <td><span class="risk-badge ${i.severity==='جسيم'?'risk-high':'risk-med'}">${i.severity}</span></td>
+      </tr>`).join('')}
+    </table>
+    <h4>العوائد الاقتصادية والاجتماعية</h4>
+    <table>
+      <tr><th>النوع</th><th>العائد المحقق</th></tr>
+      ${(e.economic_benefits||[]).map(b=>`<tr><td><strong>${b.type}</strong></td><td>${b.benefit}</td></tr>`).join('')}
+    </table>`,'الدراسة الاقتصادية (2/3)')},
+
+  // 8 ALTERNATIVES
+  {id:'s2-alternatives',label:'البدائل',type:'content',html:cSlide('الدراسة الاقتصادية','دراسة البدائل واختيار الأمثل',`
+    <h4>البدائل المدروسة ومعايير الاختيار</h4>
+    <table>
+      <tr><th>البديل</th><th>المميزات</th><th>العيوب</th><th>الدرجة</th><th>التوصية</th></tr>
+      ${(e.alternatives||[]).map(a=>`<tr>
+        <td><strong>${a.name}</strong><br><small style="color:#888">${a.desc}</small></td>
+        <td style="color:#1a7040">${a.pros}</td>
+        <td style="color:#c03030">${a.cons}</td>
+        <td style="text-align:center;font-weight:700;font-size:15px;color:${a.score>=9?'#0d7a7a':'#888'}">${a.score}/10</td>
+        <td>${a.recommended?'<span class="recommend-badge">✅ الأمثل</span>':'—'}</td>
+      </tr>`).join('')}
+    </table>`,'الدراسة الاقتصادية (3/3)')},
+
+  // 9 COMMERCIAL INTRO
+  {id:'s3-intro',label:'التجارية',type:'section',html:`
+  <div class="slide-section-intro">
+    ${logoImg('sec-uqu-logo',44)}
+    <div class="section-num">٣</div>
+    <h2>الدراسة التجارية</h2>
+    <div class="section-desc">استراتيجية التعاقد · القطاع الخاص · وثائق المنافسة · معايير التقييم · جدول الدفعات</div>
+    <div class="key-points">
+      <div class="key-point">◈ المنافسة العامة</div>
+      <div class="key-point">◈ نظام المشتريات الحكومية</div>
+    </div>
+    <div class="bottom-pattern"></div>
+  </div>`},
+
+  // 10 CONTRACT
+  {id:'s3-contract',label:'التعاقد والتمويل',type:'content',html:cSlide('الدراسة التجارية','استراتيجية التعاقد والتمويل',`
+    <h4>استراتيجية التعاقد المقترحة</h4>
+    <div class="highlight-box">${c.contract_strategy||''}</div>
+    <div class="two-col">
+      <div class="info-card"><div class="card-title">طريقة التعاقد</div><p>${c.contract_type||''}</p></div>
+      <div class="info-card"><div class="card-title">مشاركة القطاع الخاص</div><p>${c.private_sector||''}</p></div>
+    </div>
+    <h4>جدول الدفعات المقترح</h4>
+    <div class="highlight-box gold">${c.payment_schedule||''}</div>`,'الدراسة التجارية (1/2)')},
+
+  // 11 PROCUREMENT
+  {id:'s3-procurement',label:'المنافسة والتقييم',type:'content',html:cSlide('الدراسة التجارية','وثائق المنافسة ومعايير التقييم',`
+    <h4>الوثائق المطلوبة في وثائق المنافسة</h4>
+    <ul>${(c.procurement_docs||[]).map(d=>`<li>${d}</li>`).join('')}</ul>
+    <h4>معايير تقييم العروض ونسب الترجيح</h4>
+    <table>
+      <tr><th>معيار التقييم</th><th>الوزن النسبي</th></tr>
+      ${(c.evaluation_criteria||[]).map(cr=>`<tr><td>${cr.criterion}</td><td style="text-align:center;font-weight:700;color:var(--teal-dark)">${cr.weight}</td></tr>`).join('')}
+    </table>`,'الدراسة التجارية (2/2)')},
+
+  // 12 FINANCIAL INTRO
+  {id:'s4-intro',label:'المالية',type:'section',html:`
+  <div class="slide-section-intro">
+    ${logoImg('sec-uqu-logo',44)}
+    <div class="section-num">٤</div>
+    <h2>الدراسة المالية وهندسة القيمة</h2>
+    <div class="section-desc">جدول التكلفة الكاملة · التكلفة الرأسمالية والتشغيلية · مقترحات الهندسة القيمية · توصيات الدراسة</div>
+    <div class="key-points">
+      <div class="key-point">◈ CAPEX: ${formatNumber(proj.totalCost)} ريال</div>
+      <div class="key-point">◈ OPEX: ${formatNumber(proj.opex)} ريال</div>
+      <div class="key-point">◈ توفير متوقع: 15-22%</div>
+    </div>
+    <div class="bottom-pattern"></div>
+  </div>`},
+
+  // 13 BUDGET
+  {id:'s4-budget',label:'الميزانية',type:'content',html:cSlide('الدراسة المالية','جدول التكلفة التقديرية الكاملة',`
+    <h4>توزيع الميزانية على بنود الأعمال</h4>
+    <table>
+      <tr><th>البند</th><th>القيمة (ريال)</th><th>النسبة</th><th>الشمول</th></tr>
+      ${(f.budget_items||[]).map(b=>`<tr>
+        <td><strong>${b.item}</strong></td>
+        <td style="direction:ltr;text-align:left;font-weight:700;color:var(--teal-dark)">${formatNumber(b.amount)}</td>
+        <td style="text-align:center">${b.pct}</td>
+        <td style="color:#666;font-size:11px">${b.detail||''}</td>
+      </tr>`).join('')}
+      <tr style="background:rgba(13,122,122,.1)">
+        <td><strong>إجمالي التكلفة الرأسمالية (CAPEX)</strong></td>
+        <td style="direction:ltr;text-align:left;font-weight:900;color:var(--teal-dark);font-size:14px">${formatNumber(proj.totalCost)}</td>
+        <td style="text-align:center;font-weight:700">100%</td>
+        <td></td>
+      </tr>
+      <tr style="background:rgba(201,162,39,.08)">
+        <td>التكاليف التشغيلية والصيانة (OPEX/30 عام)</td>
+        <td style="direction:ltr;text-align:left;font-weight:700;color:var(--gold-dark)">${formatNumber(proj.opex)}</td>
+        <td></td><td style="font-size:11px;color:#888">0.025% سنوياً × 30 عام</td>
+      </tr>
+      <tr style="background:rgba(13,122,122,.15)">
+        <td><strong>التكلفة الكلية لدورة الحياة (LCC)</strong></td>
+        <td style="direction:ltr;text-align:left;font-weight:900;color:var(--teal-dark);font-size:14px">${formatNumber(proj.grandTotal)}</td>
+        <td></td><td></td>
+      </tr>
+    </table>`,'الدراسة المالية (1/2)')},
+
+  // 14 VALUE ENGINEERING
+  {id:'s4-ve',label:'هندسة القيمة',type:'content',html:cSlide('الدراسة المالية','دراسة الهندسة القيمية (Value Engineering)',`
+    <h4>مفهوم الهندسة القيمية وأهدافها</h4>
+    <p>تهدف الهندسة القيمية إلى تحقيق أفضل نسبة قيمة/تكلفة عبر مراجعة التصاميم واستبدال المواد بأخرى مكافئة بتكلفة أقل دون الإخلال بالجودة والأداء الوظيفي.</p>
+    <h4>مقترحات الهندسة القيمية وتقييمها</h4>
+    <table>
+      <tr><th>الفكرة / المقترح</th><th>نسبة التوفير</th><th>الأثر على الجودة</th><th>التقييم</th></tr>
+      ${(f.value_engineering||[]).map(v=>`<tr>
+        <td>${v.idea}</td>
+        <td style="text-align:center;font-weight:700;color:var(--teal-dark)">${v.saving_pct}</td>
+        <td style="color:#1a7040">${v.impact_quality}</td>
+        <td><div class="ve-score"><span class="score-val">${v.score}</span><span class="score-label">/10</span></div></td>
+      </tr>`).join('')}
+    </table>
+    <div class="highlight-box gold">✦ إجمالي التوفير المتوقع من تطبيق مقترحات الهندسة القيمية: <strong>${f.total_saving_pct}</strong> أي ما يعادل <strong>${formatNumber(f.total_saving_amount)} ريال</strong> من إجمالي التكلفة الرأسمالية.</div>`,'الدراسة المالية (2/2)')},
+
+  // 15 MANAGEMENT INTRO
+  {id:'s5-intro',label:'الإدارية',type:'section',html:`
+  <div class="slide-section-intro">
+    ${logoImg('sec-uqu-logo',44)}
+    <div class="section-num">٥</div>
+    <h2>الدراسة الإدارية</h2>
+    <div class="section-desc">خطة التنفيذ · الجدول الزمني · هيكل فريق الإدارة · سجل المخاطر · مؤشرات الأداء</div>
+    <div class="key-points">
+      <div class="key-point">◈ ${m.project_phases?m.project_phases.length:5} مراحل تنفيذية</div>
+      <div class="key-point">◈ ${m.risks?m.risks.length:6} مخاطر مُعالجة</div>
+      <div class="key-point">◈ ${m.kpis?m.kpis.length:4} مؤشرات أداء</div>
+    </div>
+    <div class="bottom-pattern"></div>
+  </div>`},
+
+  // 16 MILESTONES
+  {id:'s5-milestones',label:'الخطة الزمنية',type:'content',html:cSlide('الدراسة الإدارية','الخطة الزمنية والمحطات الرئيسية (Milestones)',`
+    <h4>مراحل المشروع والجدول الزمني</h4>
+    ${(m.project_phases||[]).map((ph,i)=>`
+    <div class="timeline-row">
+      <div class="timeline-marker">
+        <div class="timeline-dot"></div>
+        ${i<(m.project_phases.length-1)?'<div class="timeline-line"></div>':''}
+      </div>
+      <div class="timeline-content">
+        <div class="phase-title">${ph.phase}: ${ph.name}</div>
+        <div class="phase-meta">المدة: ${ph.duration_months} ${ph.duration_months>24?'شهراً (دورة حياة)':'شهر'} · يبدأ من الشهر: ${ph.start_month}</div>
+        <div class="phase-del">المخرجات: ${(ph.deliverables||[]).join(' · ')}</div>
+      </div>
+    </div>`).join('')}`,'الدراسة الإدارية (1/3)')},
+
+  // 17 RISKS
+  {id:'s5-risks',label:'سجل المخاطر',type:'content',html:cSlide('الدراسة الإدارية','سجل المخاطر الجوهرية وخطط المعالجة',`
+    <h4>تصنيف وتقييم المخاطر واستراتيجيات التخفيف</h4>
+    <table>
+      <tr><th>الفئة</th><th>المخاطرة</th><th>الاحتمال</th><th>الأثر</th><th>إجراء المعالجة</th><th>المسؤول</th></tr>
+      ${(m.risks||[]).map(r=>`<tr>
+        <td><strong>${r.category}</strong></td>
+        <td>${r.risk}</td>
+        <td><span class="risk-badge ${r.probability==='عالٍ'?'risk-high':r.probability==='متوسط'?'risk-med':'risk-low'}">${r.probability}</span></td>
+        <td><span class="risk-badge ${r.impact==='عالٍ'?'risk-high':r.impact==='متوسط'?'risk-med':'risk-low'}">${r.impact}</span></td>
+        <td style="font-size:11px">${r.mitigation}</td>
+        <td style="font-size:11px;color:#888">${r.owner}</td>
+      </tr>`).join('')}
+    </table>`,'الدراسة الإدارية (2/3)')},
+
+  // 18 TEAM & KPIs
+  {id:'s5-team',label:'الفريق والمؤشرات',type:'content',html:cSlide('الدراسة الإدارية','هيكل فريق الإدارة ومؤشرات الأداء الرئيسية',`
+    <h4>فريق إدارة المشروع وأدوار الأطراف</h4>
+    <table>
+      <tr><th>الطرف</th><th>الدور والمسؤوليات</th></tr>
+      <tr><td><strong>الجهة المالكة</strong></td><td>${m.project_team?m.project_team.owner:''}</td></tr>
+      <tr><td><strong>استشاري الإشراف</strong></td><td>${m.project_team?m.project_team.supervisor_role:''}</td></tr>
+      <tr><td><strong>المقاول الرئيسي</strong></td><td>${m.project_team?m.project_team.contractor_role:''}</td></tr>
+      <tr><td><strong>مقاولو الباطن</strong></td><td>${m.project_team?m.project_team.subcontractors:''}</td></tr>
+    </table>
+    <h4>مؤشرات الأداء الرئيسية (KPIs)</h4>
+    <table>
+      <tr><th>المؤشر</th><th>المستهدف</th></tr>
+      ${(m.kpis||[]).map(k=>`<tr><td>${k.kpi}</td><td style="text-align:center;font-weight:700;color:var(--teal-dark)">${k.target}</td></tr>`).join('')}
+    </table>`,'الدراسة الإدارية (3/3)')}
+
+  ];
+
+  allSlides=slides;
+  buildSlides();
+  buildNav();
+  goToSlide(0);
+}
+
+function cSlide(section,title,body,badge){
+  return`<div class="slide-content">
+    <div class="slide-header">
+      <div class="slide-header-right">
+        ${logoImg('slide-header-uqu',36)}
+        <div class="slide-header-divider"></div>
+        <h3>${title}</h3>
+      </div>
+      <div class="slide-header-badge">${section}</div>
+    </div>
+    <div class="slide-body">${body}</div>
+    <div class="slide-footer">
+      <span class="footer-uqu">جامعة أم القرى · وكالة المشاريع · قسم الدراسات والتصاميم</span>
+      <span class="footer-num">${badge||''}</span>
+    </div>
+    <div class="slide-footer-bar"></div>
+  </div>`
+}
+
+function buildSlides(){
+  const c=document.getElementById('slidesContainer');
+  c.innerHTML='';
+  allSlides.forEach((s,i)=>{
+    const d=document.createElement('div');
+    d.className='slide'+(i===0?' active':'');
+    d.id='slide-'+i;
+    d.innerHTML=s.html;
+    c.appendChild(d);
+  });
+}
+function buildNav(){
+  const n=document.getElementById('slidesNav');
+  n.innerHTML='';
+  allSlides.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.className='slide-nav-btn'+(s.type==='section'||s.type==='cover'?' sec-nav':'')+(i===0?' active':'');
+    b.textContent=s.label;
+    b.onclick=()=>goToSlide(i);
+    n.appendChild(b);
+  });
+}
+function goToSlide(n){
+  document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.slide-nav-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  currentSlide=n;
+  document.getElementById('slideCounter').textContent=`الشريحة ${n+1} من ${allSlides.length}`;
+  document.getElementById('btnPrev').disabled=n===0;
+  document.getElementById('btnNext').disabled=n===allSlides.length-1;
+  document.getElementById('slidesContainer').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function prevSlide(){if(currentSlide>0)goToSlide(currentSlide-1)}
+function nextSlide(){if(currentSlide<allSlides.length-1)goToSlide(currentSlide+1)}
+function backToForm(){
+  document.getElementById('reportSection').style.display='none';
+  document.getElementById('inputSection').style.display='block';
+  setStep(1);
+}
+</script>
+</body>
+</html>
