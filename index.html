@@ -351,20 +351,24 @@ async function callAPI(prompt, maxTokens){
   const response = await fetch('/api/generate',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:maxTokens,messages:[{role:'user',content:prompt}]})
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:maxTokens,
+      system:'You are a JSON-only API. Return only valid JSON starting with { and ending with }. No markdown, no code blocks, no explanation.',
+      messages:[{role:'user',content:prompt}]
+    })
   });
   const data = await response.json();
   if(data.error) throw new Error(data.error);
   const rawText = data.content.map(b=>b.text||'').join('');
+  const firstBrace = rawText.indexOf('{');
+  const lastBrace = rawText.lastIndexOf('}');
+  if(firstBrace === -1 || lastBrace === -1) throw new Error('No JSON found: ' + rawText.substring(0,200));
+  const jsonStr = rawText.substring(firstBrace, lastBrace + 1);
   try {
-    const cleaned = rawText.replace(/```json[\s\S]*?```/g, m => m.slice(7,-3)).replace(/```/g,'').trim();
-    const jsonMatch = cleaned.match(/^\s*(\{[\s\S]*\})\s*$/);
-    if(jsonMatch) return JSON.parse(jsonMatch[1]);
-    return JSON.parse(cleaned);
+    return JSON.parse(jsonStr);
   } catch(e) {
-    const m = rawText.match(/\{[\s\S]*\}/);
-    if(m){ try{ return JSON.parse(m[0]); }catch(e2){} }
-    throw new Error('JSON parse error: ' + rawText.substring(0,300));
+    throw new Error('JSON parse failed: ' + e.message + ' | ' + jsonStr.substring(0,200));
   }
 }
 
